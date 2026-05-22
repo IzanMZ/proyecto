@@ -244,7 +244,6 @@ public class Sql_Album {
 
         // Consulta SQL ordenada por la columna titulo ascendentemente.
         String sql = "SELECT * FROM Album ORDER BY titulo ASC";
-
         int contador = 0;
         String[][] consulta = new String[100][8];
 

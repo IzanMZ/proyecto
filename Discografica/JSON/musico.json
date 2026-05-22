@@ -1,0 +1,8 @@
+[
+  {"codigo":"2","codigo_banda":"1","nombre":"Brian May","fecha_nacimiento":"1947/07/19","lugar_residencia":"Londres, Reino Unido","nacionalidad":"Británica","instrumento":"Guitarra"},
+  {"codigo":"1","codigo_banda":"1","nombre":"Freddie Mercury","fecha_nacimiento":"1946/09/05","lugar_residencia":"Londres, Reino Unido","nacionalidad":"Británica","instrumento":"Voz"},
+  {"codigo":"3","codigo_banda":"2","nombre":"Gustavo Cerati","fecha_nacimiento":"1959/08/11","lugar_residencia":"Buenos Aires, Argentina","nacionalidad":"Argentina","instrumento":"Guitarra y Voz"},
+  {"codigo":"5","codigo_banda":"3","nombre":"James Hetfield","fecha_nacimiento":"1963/08/03","lugar_residencia":"California, Estados Unidos","nacionalidad":"Estadounidense","instrumento":"Guitarra y Voz"},
+  {"codigo":"6","codigo_banda":"3","nombre":"Lars Ulrich","fecha_nacimiento":"1963/12/26","lugar_residencia":"California, Estados Unidos","nacionalidad":"Danesa","instrumento":"Batería"},
+  {"codigo":"4","codigo_banda":"2","nombre":"Zeta Bosio","fecha_nacimiento":"1958/10/01","lugar_residencia":"Buenos Aires, Argentina","nacionalidad":"Argentina","instrumento":"Bajo"}
+]

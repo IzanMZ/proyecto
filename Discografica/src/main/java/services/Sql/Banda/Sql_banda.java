@@ -59,14 +59,12 @@ public class Sql_banda {
             genero = ?
         WHERE codigo = ?
     """;
-
-        try (Connection con = configuracion.constant.conectar(); PreparedStatement os = con.prepareStatement(sql)) {
-
-            // Validación: comprobar si la banda existe antes de actualizarla
+        // Validación: comprobar si la banda existe antes de actualizarla
         if (!Util_Clases.existeBandaCodigo(codigo)) {
-                System.out.println("Error: la banda no existe");
-                return;
-            }
+            System.out.println("Error: la banda no existe");
+            return;
+        }
+        try (Connection con = configuracion.constant.conectar(); PreparedStatement os = con.prepareStatement(sql)) {
 
             os.setString(1, banda.getNombre());
             os.setString(2, banda.getAnios_actuacion());
@@ -174,8 +172,6 @@ public class Sql_banda {
         return consulta;
     }
 
-  
-
     public static boolean existeBanda(String nombre) {
 
         // Consulta SQL que comprueba si existe una banda con ese nombre
@@ -194,15 +190,10 @@ public class Sql_banda {
 
         } catch (Exception e) {
 
-        
             System.out.println("Error: " + e.getMessage());
         }
 
-       
         return false;
     }
 
-    
-    
-    
 }

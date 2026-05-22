@@ -31,7 +31,7 @@ public class Contenedor_Musico {
             bw.newLine();
 
             // Guarda la fecha de nacimiento
-            bw.write("Fecha nacimiento: " + musico.getFecha_nac());
+            bw.write("Fecha nacimiento: " + musico.getFecha_nacimineto());
             bw.newLine();
 
             // Guarda la residencia del músico

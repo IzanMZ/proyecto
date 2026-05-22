@@ -13,14 +13,14 @@ public class Banda {
     private int codigo ;
     private static int contador ;
     private String nombre;
-    private String anos_actuacion;//
+    private String anios_actuacion;//
     private String lugar_origen;
     private String genero;
 
     public Banda( String nombre, String anos_actuacion, String lugar_origen, String genero) {
         this.codigo = contador++;
         this.nombre = nombre;
-        this.anos_actuacion = anos_actuacion;
+        this.anios_actuacion = anos_actuacion;
         this.lugar_origen = lugar_origen;
         this.genero = genero;
     }
@@ -42,11 +42,11 @@ public class Banda {
     }
 
     public String getAnios_actuacion() {
-        return anos_actuacion;
+        return anios_actuacion;
     }
 
     public void setAnos_actuacion(String anos_actuacion) {
-        this.anos_actuacion = anos_actuacion;
+        this.anios_actuacion = anos_actuacion;
     }
 
     public String getLugar_origen() {

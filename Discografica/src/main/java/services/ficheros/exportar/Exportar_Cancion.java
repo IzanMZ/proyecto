@@ -24,8 +24,9 @@ public class Exportar_Cancion {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en TXT.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar txt.");
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("TXT\\cancion.txt"))) {
@@ -64,9 +65,12 @@ public class Exportar_Cancion {
 
     // EXPORTAR A CSV: mismo formato que TXT pero con extensión .csv
     public static void exportarCSV(String[][] datos) {
+
         try {
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en CSV.");
+
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar csv.");
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("CSV\\cancion.csv"))) {
@@ -103,9 +107,12 @@ public class Exportar_Cancion {
 
     // EXPORTAR A BINARIO: guarda la matriz completa serializada en un archivo .bin
     public static void exportarBinario(String[][] datos) {
+
         try {
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en binario.");
+
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar binario.");
             }
 
             try (ObjectOutputStream os
@@ -127,8 +134,9 @@ public class Exportar_Cancion {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en JSON.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar json.");
             }
 
             BufferedWriter bw = new BufferedWriter(

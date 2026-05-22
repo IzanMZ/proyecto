@@ -19,10 +19,10 @@ public class Exportar_Musico {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en TXT.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar txt.");
             }
-
             try (BufferedWriter bw
                     = new BufferedWriter(new FileWriter("TXT\\musico.txt"))) {
 
@@ -57,8 +57,9 @@ public class Exportar_Musico {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en CSV.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar csv.");
             }
 
             try (BufferedWriter bw
@@ -95,8 +96,9 @@ public class Exportar_Musico {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en BINARIO.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar binario.");
             }
 
             try (ObjectOutputStream os
@@ -117,8 +119,9 @@ public class Exportar_Musico {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en JSON.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar json.");
             }
 
             try (BufferedWriter bw

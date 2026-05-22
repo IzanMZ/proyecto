@@ -18,9 +18,9 @@ public class Exportar_Banda {
     public static void exportarTXT(String[][] datos) {
 
         try {
-
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en TXT.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar TXT.");
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("TXT\\banda.txt"))) {
@@ -56,8 +56,9 @@ public class Exportar_Banda {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en CSV.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar csv.");
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("CSV\\banda.csv"))) {
@@ -93,10 +94,10 @@ public class Exportar_Banda {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en BINARIO.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar binario.");
             }
-
             try (ObjectOutputStream os
                     = new ObjectOutputStream(new FileOutputStream("Binario\\banda.bin"))) {
 
@@ -115,8 +116,9 @@ public class Exportar_Banda {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en JSON.");
+           //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar json.");
             }
 
             try (BufferedWriter bw = new BufferedWriter(new FileWriter("JSON\\banda.json"))) {

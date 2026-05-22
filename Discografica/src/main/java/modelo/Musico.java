@@ -15,7 +15,7 @@ public class Musico {
     private Integer codigo_banda;
     private String nombre;
     private String fecha_nacimiento;
-    private String lugar_recidencia;
+    private String lugar_residencia;
     private String nacionalidad;
     private String instrumento;
 
@@ -24,7 +24,7 @@ public class Musico {
         this.codigo_banda = codigo_banda;
         this.nombre = nombre;
         this.fecha_nacimiento = fecha_nac;
-        this.lugar_recidencia = residencia;
+        this.lugar_residencia = residencia;
         this.nacionalidad = nacionalidad;
         this.instrumento = instrumento;
     }
@@ -41,7 +41,7 @@ public class Musico {
         return codigo_banda;
     }
 
-    public void setCodigo_banda(int codigo_banda) {
+    public void setCodigo_banda(Integer codigo_banda) {
         this.codigo_banda = codigo_banda;
     }
 
@@ -53,20 +53,20 @@ public class Musico {
         this.nombre = nombre;
     }
 
-    public String getFecha_nac() {
+    public String getFecha_nacimineto() {
         return fecha_nacimiento;
     }
 
-    public void setFecha_nac(String fecha_nac) {
+    public void setFecha_nacimiento(String fecha_nac) {
         this.fecha_nacimiento = fecha_nac;
     }
 
     public String getResidencia() {
-        return lugar_recidencia;
+        return lugar_residencia;
     }
 
     public void setResidencia(String residencia) {
-        this.lugar_recidencia = residencia;
+        this.lugar_residencia = residencia;
     }
 
     public String getNacionalidad() {

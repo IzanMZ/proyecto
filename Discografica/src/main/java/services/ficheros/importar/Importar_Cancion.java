@@ -117,7 +117,7 @@ public class Importar_Cancion {
 
     // Importa datos desde JSON
     public static String[][] importarJSON(File archivo) throws Excepciones {
-        
+
         //Validación: de si existe json
         if (archivo == null || !archivo.exists()) {
             throw new Excepciones("El archivo JSON no existe");
@@ -164,15 +164,30 @@ public class Importar_Cancion {
     }
 
     // Importa datos desde BINARIO
+    // Importa datos desde BINARIO
     public static String[][] importarBinario(File archivo) throws Excepciones {
+
+        if (archivo.length() == 0) {
+            throw new Excepciones("Archivo BINARIO vacío");
+        }
 
         try (ObjectInputStream ois
                 = new ObjectInputStream(new FileInputStream(archivo))) {
 
-            return (String[][]) ois.readObject();
+            Object obj = ois.readObject();
+
+            if (obj == null) {
+                throw new Excepciones("Archivo binario vacío");
+            }
+
+            if (!(obj instanceof String[][])) {
+                throw new Excepciones("Formato binario incorrecto");
+            }
+
+            return (String[][]) obj;
 
         } catch (Exception e) {
-            throw new Excepciones("Error BINARIO: " + e.getMessage());
+            throw new Excepciones("Error BINARIO: " + e.toString());
         }
     }
 }

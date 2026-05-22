@@ -12,22 +12,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-
 public class Importar_banda {
 
-     /*
-     * Importa los datos del banda a MySQL
-     * Inserta registros en la tabla Banda
+    /*
+     * Método principal:
+     * Importa datos de un archivo según su formato y los envía a MySQL.
      */
     public static void importarBandaDesdeArchivo(File archivo, String formato)
             throws Excepciones {
 
         String[][] datos;
 
-        // Selección del tipo de archivo
+        // Selecciona el tipo de archivo a leer
         switch (formato) {
 
-            // Archivos de texto o CSV
+            // Archivos TXT o CSV (texto separado por ;)
             case "TXT", "CSV" -> {
                 datos = importarTexto(archivo);
             }
@@ -37,112 +36,130 @@ public class Importar_banda {
                 datos = importarJSON(archivo);
             }
 
-            // Archivo binario serializado
+            // Archivo binario serializado (.bin)
             case "Binario" -> {
                 datos = importarBinario(archivo);
             }
 
-            // Formato no soportado
+            // Si el formato no es válido, lanza error
             default ->
                 throw new Excepciones("Formato no válido");
         }
 
-        // Una vez convertidos los datos, se importan a MySQL
+        // VALIDACIÓN FINAL
+        if (datos == null || datos.length == 0) {
+            throw new Excepciones("No hay datos para importar");
+        }
+
+        // Inserta los datos en MySQL
         importarBanda_MySQL(datos);
     }
 
-    // Inserta los datos de Banda en la base de datos MySQL usando batch insert para mayor eficiencia. 
+    /*
+     * Inserta los datos en la tabla Banda de MySQL
+     * usando batch insert (más eficiente).
+     */
     public static void importarBanda_MySQL(String[][] datos)
             throws Excepciones {
 
-        // Validación de datos
+        // Validación: si no hay datos, no se puede importar
         if (datos == null || datos.length == 0) {
             throw new Excepciones("No hay datos para importar en Banda");
         }
 
-        // SQL fijo para la tabla Banda
+        // SQL de inserción
         String sql = "INSERT INTO Banda (codigo, nombre, anios_actuacion, lugar_origen, genero) "
                 + "VALUES (?, ?, ?, ?, ?)";
 
         try (
-                // Conexión a la base de datos
-                Connection con = configuracion.constant.conectar(); // PreparedStatement para batch insert
-                 PreparedStatement ps = con.prepareStatement(sql)) {
+                Connection con = configuracion.constant.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-            // Control manual de transacciones
+            // Control manual de transacción
             con.setAutoCommit(false);
 
-            // Recorre cada fila del array de datos
             for (String[] fila : datos) {
 
-                // Si la fila es inválida, se detiene el proceso
+                // Ignora filas inválidas
                 if (fila == null || fila[0] == null) {
                     break;
                 }
 
-                // Asignación de valores a la consulta SQL
                 ps.setInt(1, Integer.parseInt(fila[0])); // codigo
                 ps.setString(2, fila[1]); // nombre
                 ps.setString(3, fila[2]); // anios_actuacion
                 ps.setString(4, fila[3]); // lugar_origen
                 ps.setString(5, fila[4]); // genero
 
-                // Añade la fila al batch
                 ps.addBatch();
             }
 
-            // Ejecuta todas las inserciones
             ps.executeBatch();
-
-            // Confirma la transacción
             con.commit();
 
             System.out.println("Banda importada correctamente");
 
         } catch (Exception e) {
-            // Manejo de errores
             throw new Excepciones("Error MySQL Banda: " + e.getMessage());
         }
     }
 
-    // Lee un archivo TXT o CSV y lo convierte en una matriz String[][] separando por ";" 
+    /*
+     * Lee un archivo TXT o CSV
+     * y lo convierte en String[][]
+     */
     public static String[][] importarTexto(File archivo) throws Excepciones {
 
-        // Estructura fija (100 filas x 20 columnas)
-        String[][] datos = new String[100][20];
+        List<String[]> lista = new java.util.ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
 
             String linea;
-            int i = 0;
 
-            // Lee el archivo línea por línea
             while ((linea = br.readLine()) != null) {
-                datos[i++] = linea.split(";");
+
+                linea = linea.trim();
+
+                // Ignorar líneas vacías
+                if (linea.isEmpty()) {
+                    continue;
+                }
+
+                String[] partes = linea.split(";");
+
+                // Ignorar filas sin código
+                if (partes.length == 0 || partes[0].trim().isEmpty()) {
+                    continue;
+                }
+
+                lista.add(partes);
             }
 
-            return datos;
+            
+
+            return lista.toArray(new String[0][]);
 
         } catch (Exception e) {
             throw new Excepciones("Error TXT/CSV: " + e.getMessage());
         }
     }
 
-    // Lee un archivo JSON y lo convierte a String[][] usando Gson. 
+    /*
+     * Lee un archivo JSON
+     * y lo convierte a String[][]
+     */
     public static String[][] importarJSON(File archivo) throws Excepciones {
 
         try (FileReader reader = new FileReader(archivo)) {
 
             Gson gson = new Gson();
 
-            // Convierte JSON a lista de mapas clave-valor
             List<java.util.Map<String, String>> lista
                     = gson.fromJson(reader,
                             new com.google.gson.reflect.TypeToken<
                                     List<java.util.Map<String, String>>>() {
                             }.getType());
 
-            // Validación
+            // JSON vacío
             if (lista == null || lista.isEmpty()) {
                 throw new Excepciones("JSON vacío");
             }
@@ -150,7 +167,6 @@ public class Importar_banda {
             String[][] datos = new String[lista.size()][5];
             int j = 0;
 
-            // Conversión de cada objeto JSON a fila
             for (java.util.Map<String, String> obj : lista) {
 
                 if (obj == null) {
@@ -166,7 +182,6 @@ public class Importar_banda {
                 };
             }
 
-            // Ajusta tamaño real del array
             return java.util.Arrays.copyOf(datos, j);
 
         } catch (Exception e) {
@@ -174,14 +189,31 @@ public class Importar_banda {
         }
     }
 
-    // Lee un archivo binario (.bin) y lo convierte en String[][] usando ObjectInputStream. 
+    /*
+     * Lee un archivo binario (.bin)
+     * y lo convierte en String[][]
+     */
     public static String[][] importarBinario(File archivo)
             throws Excepciones {
+
+        if (archivo.length() == 0) {
+            throw new Excepciones("Archivo BINARIO vacío");
+        }
 
         try (ObjectInputStream ois
                 = new ObjectInputStream(new FileInputStream(archivo))) {
 
-            return (String[][]) ois.readObject();
+            Object obj = ois.readObject();
+
+            if (obj == null) {
+                throw new Excepciones("Archivo binario vacío");
+            }
+
+            if (!(obj instanceof String[][])) {
+                throw new Excepciones("Formato binario incorrecto");
+            }
+
+            return (String[][]) obj;
 
         } catch (Exception e) {
             throw new Excepciones("Error BINARIO: " + e.getMessage());

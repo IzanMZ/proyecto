@@ -49,7 +49,7 @@ public class Sql_Musico {
             os.setString(3, musico.getNombre());
 
             // Fecha de nacimiento.
-            os.setString(4, musico.getFecha_nac());
+            os.setString(4, musico.getFecha_nacimineto());
 
             // Lugar de residencia.
             os.setString(5, musico.getResidencia());
@@ -118,7 +118,7 @@ public class Sql_Musico {
             ps.setString(2, musico.getNombre());
 
             // Fecha de nacimiento.
-            ps.setString(3, musico.getFecha_nac());
+            ps.setString(3, musico.getFecha_nacimineto());
 
             // Lugar de residencia.
             ps.setString(4, musico.getResidencia());

@@ -1,4 +1,4 @@
-package main_discografica;
+package com.mycompany.discografica_musica;
 
 import services.Sql.Sql_ComprobarTabla;
 import services.ficheros.Comprobar_Ficheros;

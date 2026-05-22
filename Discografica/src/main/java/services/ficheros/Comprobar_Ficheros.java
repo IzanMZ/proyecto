@@ -123,14 +123,19 @@ public class Comprobar_Ficheros {
 
         for (File archivo : archivos) {
 
-            if (!archivo.exists()) {
-
-                try {
+            try {
+                // SOLO crear si NO existe y además NO dejarlo vacío inválido
+                if (!archivo.exists()) {
                     archivo.createNewFile();
-
-                } catch (IOException e) {
-                    throw new Excepciones("Error creando archivo BINARIO: " + archivo.getName() + " -> " + e.getMessage());
                 }
+
+            } catch (IOException e) {
+                throw new Excepciones(
+                        "Error creando archivo BINARIO: "
+                        + archivo.getName()
+                        + " -> "
+                        + e.getMessage()
+                );
             }
         }
     }

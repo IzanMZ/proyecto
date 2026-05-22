@@ -1,0 +1,9 @@
+[
+  {"codigo": "5", "codigo_album": "3", "posicion": "1", "titulo": "Battery", "compositor": "James Hetfield", "duracion": "05:12"},
+  {"codigo": "2", "codigo_album": "1", "posicion": "2", "titulo": "Bohemian Rhapsody", "compositor": "Freddie Mercury", "duracion": "05:55"},
+  {"codigo": "4", "codigo_album": "2", "posicion": "2", "titulo": "De Música Ligera", "compositor": "Gustavo Cerati", "duracion": "03:32"},
+  {"codigo": "1", "codigo_album": "1", "posicion": "1", "titulo": "Death on Two Legs", "compositor": "Freddie Mercury", "duracion": "03:43"},
+  {"codigo": "7", "codigo_album": "4", "posicion": "1", "titulo": "Déjà Vu", "compositor": "Gustavo Cerati", "duracion": "05:13"},
+  {"codigo": "3", "codigo_album": "2", "posicion": "1", "titulo": "En la Ciudad de la Furia", "compositor": "Gustavo Cerati", "duracion": "05:46"},
+  {"codigo": "6", "codigo_album": "3", "posicion": "2", "titulo": "Master of Puppets", "compositor": "James Hetfield", "duracion": "08:35"}
+]
