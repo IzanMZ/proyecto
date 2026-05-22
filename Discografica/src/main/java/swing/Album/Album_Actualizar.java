@@ -193,7 +193,7 @@ public class Album_Actualizar extends javax.swing.JFrame {
             // Validación: autor
             // Comprueba que el usuario haya seleccionado un autor en el ComboBox
             if (autorCB.getSelectedItem() == null) {
-                throw new Excepciones("Debe seleccionar un autor.");
+                throw new Excepciones("Debe  seleccionar un autor.");
             }
 
             // Se obtiene el autor y se eliminan espacios en blanco
