@@ -26,7 +26,7 @@ public class Exportar_Album {
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("TXT\\album.txt"));
+                    new FileWriter("Ficheros\\TXT\\album.txt"));
 
             for (int i = 0; i < datos.length; i++) {
 
@@ -73,7 +73,7 @@ public class Exportar_Album {
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("CSV\\album.csv"));
+                    new FileWriter("Ficheros\\CSV\\album.csv"));
 
             for (int i = 0; i < datos.length; i++) {
 
@@ -120,7 +120,7 @@ public class Exportar_Album {
             }
 
             ObjectOutputStream os = new ObjectOutputStream(
-                    new FileOutputStream("Binario\\album.bin")
+                    new FileOutputStream("Ficheros\\Binario\\album.bin")
             );
 
             os.writeObject(datos);
@@ -147,7 +147,7 @@ public class Exportar_Album {
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("JSON\\album.json"));
+                    new FileWriter("Ficheros\\JSON\\album.json"));
 
             bw.write("[");
             bw.newLine();

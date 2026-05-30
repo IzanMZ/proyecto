@@ -23,7 +23,7 @@ public class Exportar_Banda {
                 throw new Excepciones("No hay datos en la base de datos para exportar TXT.");
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("TXT\\banda.txt"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Ficheros\\TXT\\banda.txt"))) {
 
                 for (int i = 0; i < datos.length; i++) {
 
@@ -61,7 +61,7 @@ public class Exportar_Banda {
                 throw new Excepciones("No hay datos en la base de datos para exportar csv.");
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("CSV\\banda.csv"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Ficheros\\CSV\\banda.csv"))) {
 
                 for (int i = 0; i < datos.length; i++) {
 
@@ -99,7 +99,7 @@ public class Exportar_Banda {
                 throw new Excepciones("No hay datos en la base de datos para exportar binario.");
             }
             try (ObjectOutputStream os
-                    = new ObjectOutputStream(new FileOutputStream("Binario\\banda.bin"))) {
+                    = new ObjectOutputStream(new FileOutputStream("Ficheros\\Binario\\banda.bin"))) {
 
                 os.writeObject(datos);
 
@@ -121,7 +121,7 @@ public class Exportar_Banda {
                 throw new Excepciones("No hay datos en la base de datos para exportar json.");
             }
 
-            try (BufferedWriter bw = new BufferedWriter(new FileWriter("JSON\\banda.json"))) {
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter("Ficheros\\JSON\\banda.json"))) {
 
                 bw.write("[");
                 bw.newLine();

@@ -17,6 +17,9 @@ public class Discografica_musicaMain {
             Sql_ComprobarTabla.crearTablaAlbum();
             Sql_ComprobarTabla.crearTablaCancion();
 
+          //comprobar si existe la carpeta para guardar ficheros
+            Comprobar_Ficheros.carpetaFicheros();
+            
             // Comprobar que los ficheros existen
             Comprobar_Ficheros.ficheroTXT();
             Comprobar_Ficheros.ficheroCSV();

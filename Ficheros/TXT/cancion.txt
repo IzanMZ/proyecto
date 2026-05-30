@@ -1,0 +1,7 @@
+5;3;1;Battery;James Hetfield;05:12
+2;1;2;Bohemian Rhapsody;Freddie Mercury;05:55
+4;2;2;De Música Ligera;Gustavo Cerati;03:32
+1;1;1;Death on Two Legs;Freddie Mercury;03:43
+7;4;1;Déjà Vu;Gustavo Cerati;05:13
+3;2;1;En la Ciudad de la Furia;Gustavo Cerati;05:46
+6;3;2;Master of Puppets;James Hetfield;08:35
