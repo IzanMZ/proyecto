@@ -15,7 +15,7 @@ import java.io.ObjectOutputStream;
 
 public class Exportar_Album {
 
-    // EXPORTAR A TXT guarda los datos separados por ";" en el archivo album.txt
+    // EXPORTAR A TXT guarda los datos separados con ";" en el archivo album.txt
     public static void exportarTXT(String[][] datos) {
 
         try {
