@@ -15,10 +15,29 @@ import java.io.IOException;
  */
 public class Comprobar_Ficheros {
 
+    public static void carpetaFicheros() throws Excepciones {
+
+        File carpetaFicheros = new File("Ficheros");
+
+        if (!carpetaFicheros.exists()) {
+            carpetaFicheros.mkdir();
+        }
+        
+        if (!carpetaFicheros.exists()) {
+
+                try {
+                    carpetaFicheros.createNewFile();
+
+                } catch (IOException e) {
+                    throw new Excepciones("Error creando carpeta: " + carpetaFicheros.getName() + " -> " + e.getMessage());
+                }
+            }
+    }
+
     // Comprueba y crea la carpeta TXT y sus archivos 
     public static void ficheroTXT() throws Excepciones {
 
-        File carpetaTXT = new File("TXT");
+        File carpetaTXT = new File("Ficheros\\TXT");
 
         if (!carpetaTXT.exists()) {
             carpetaTXT.mkdir();
@@ -48,7 +67,7 @@ public class Comprobar_Ficheros {
     // Comprueba y crea la carpeta CSV y sus archivos 
     public static void ficheroCSV() throws Excepciones {
 
-        File carpetaCSV = new File("CSV");
+        File carpetaCSV = new File("Ficheros\\CSV");
 
         if (!carpetaCSV.exists()) {
             carpetaCSV.mkdir();
@@ -78,7 +97,7 @@ public class Comprobar_Ficheros {
     // Comprueba y crea la carpeta JSON y sus archivos 
     public static void ficheroJSON() throws Excepciones {
 
-        File carpetaJSON = new File("JSON");
+        File carpetaJSON = new File("Ficheros\\JSON");
 
         if (!carpetaJSON.exists()) {
             carpetaJSON.mkdir();
@@ -108,7 +127,7 @@ public class Comprobar_Ficheros {
     // Comprueba y crea la carpeta BINARIO y sus archivos 
     public static void ficheroBinario() throws Excepciones {
 
-        File carpetaBinaria = new File("Binario");
+        File carpetaBinaria = new File("Ficheros\\Binario");
 
         if (!carpetaBinaria.exists()) {
             carpetaBinaria.mkdir();

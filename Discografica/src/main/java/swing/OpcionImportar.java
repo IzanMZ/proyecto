@@ -136,7 +136,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 // BANDA
                 // =========================
                 case "Banda_TXT" -> {
-                    archivo = new File("TXT\\banda.txt");
+                    archivo = new File("Ficheros\\TXT\\banda.txt");
                     datos = Importar_banda.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -147,7 +147,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Banda_CSV" -> {
-                    archivo = new File("CSV\\banda.csv");
+                    archivo = new File("Ficheros\\CSV\\banda.csv");
                     datos = Importar_banda.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -158,7 +158,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Banda_JSON" -> {
-                    archivo = new File("JSON\\banda.json");
+                    archivo = new File("Ficheros\\JSON\\banda.json");
                     datos = Importar_banda.importarJSON(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -169,7 +169,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Banda_BINARIO" -> {
-                    archivo = new File("Binario\\banda.bin");
+                    archivo = new File("Ficheros\\Binario\\banda.bin");
                     datos = Importar_banda.importarBinario(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -183,7 +183,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 // MUSICO
                 // =========================
                 case "Musico_TXT" -> {
-                    archivo = new File("TXT\\Musico.txt");
+                    archivo = new File("Ficheros\\TXT\\Musico.txt");
                     datos = Importar_Musico.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -194,7 +194,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Musico_CSV" -> {
-                    archivo = new File("CSV\\Musico.csv");
+                    archivo = new File("Ficheros\\CSV\\Musico.csv");
                     datos = Importar_Musico.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -205,7 +205,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Musico_JSON" -> {
-                    archivo = new File("JSON\\Musico.json");
+                    archivo = new File("Ficheros\\JSON\\Musico.json");
                     datos = Importar_Musico.importarJSON(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -216,7 +216,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Musico_BINARIO" -> {
-                    archivo = new File("Binario\\Musico.bin");
+                    archivo = new File("Ficheros\\Binario\\Musico.bin");
                     datos = Importar_Musico.importarBinario(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -230,7 +230,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 // ALBUM
                 // =========================
                 case "Album_TXT" -> {
-                    archivo = new File("TXT\\Album.txt");
+                    archivo = new File("Ficheros\\TXT\\Album.txt");
                     datos = Importar_Album.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -241,7 +241,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Album_CSV" -> {
-                    archivo = new File("CSV\\Album.csv");
+                    archivo = new File("Ficheros\\CSV\\Album.csv");
                     datos = Importar_Album.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -263,7 +263,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Album_BINARIO" -> {
-                    archivo = new File("Binario\\Album.bin");
+                    archivo = new File("Ficheros\\Binario\\Album.bin");
                     datos = Importar_Album.importarBinario(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -277,7 +277,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 // CANCION
                 // =========================
                 case "Cancion_TXT" -> {
-                    archivo = new File("TXT\\Cancion.txt");
+                    archivo = new File("Ficheros\\TXT\\Cancion.txt");
                     datos = Importar_Cancion.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -288,7 +288,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Cancion_CSV" -> {
-                    archivo = new File("CSV\\Cancion.csv");
+                    archivo = new File("Ficheros\\CSV\\Cancion.csv");
                     datos = Importar_Cancion.importarTexto(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -299,7 +299,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Cancion_JSON" -> {
-                    archivo = new File("JSON\\Cancion.json");
+                    archivo = new File("Ficheros\\JSON\\Cancion.json");
                     datos = Importar_Cancion.importarJSON(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {
@@ -310,7 +310,7 @@ public class OpcionImportar extends javax.swing.JFrame {
                 }
 
                 case "Cancion_BINARIO" -> {
-                    archivo = new File("Binario\\Cancion.bin");
+                    archivo = new File("Ficheros\\Binario\\Cancion.bin");
                     datos = Importar_Cancion.importarBinario(archivo);
 
                     if (!utils.Util_Clases.datosValidos(datos)) {

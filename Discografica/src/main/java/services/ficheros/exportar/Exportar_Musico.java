@@ -24,7 +24,7 @@ public class Exportar_Musico {
                 throw new Excepciones("No hay datos en la base de datos para exportar txt.");
             }
             try (BufferedWriter bw
-                    = new BufferedWriter(new FileWriter("TXT\\musico.txt"))) {
+                    = new BufferedWriter(new FileWriter("Ficheros\\TXT\\musico.txt"))) {
 
                 for (int i = 0; i < datos.length; i++) {
 
@@ -63,7 +63,7 @@ public class Exportar_Musico {
             }
 
             try (BufferedWriter bw
-                    = new BufferedWriter(new FileWriter("CSV\\musico.csv"))) {
+                    = new BufferedWriter(new FileWriter("Ficheros\\CSV\\musico.csv"))) {
 
                 for (int i = 0; i < datos.length; i++) {
 
@@ -102,7 +102,7 @@ public class Exportar_Musico {
             }
 
             try (ObjectOutputStream os
-                    = new ObjectOutputStream(new FileOutputStream("Binario\\musico.bin"))) {
+                    = new ObjectOutputStream(new FileOutputStream("Ficheros\\Binario\\musico.bin"))) {
 
                 os.writeObject(datos);
 
@@ -125,7 +125,7 @@ public class Exportar_Musico {
             }
 
             try (BufferedWriter bw
-                    = new BufferedWriter(new FileWriter("JSON\\musico.json"))) {
+                    = new BufferedWriter(new FileWriter("Ficheros\\JSON\\musico.json"))) {
 
                 bw.write("[");
                 bw.newLine();

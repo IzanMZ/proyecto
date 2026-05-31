@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class constant {
 
-    public static final String url = "jdbc:mysql://localhost:3306/Discografica_musica";
-    public static final String user = "root";
-    public static final String password = "1234";
+    private static final String url = "jdbc:mysql://localhost:3306/Discografica_musica";
+    private static final String user = "root";
+    private static final String password = "1234";
 
     public static Connection conectar() throws SQLException {
         return DriverManager.getConnection(url, user, password);

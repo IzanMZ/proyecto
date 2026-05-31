@@ -1,6 +1,0 @@
-[
-  {"codigo": "1", "autor": "Banda", "codigo_banda": "1", "codigo_musico": "null", "titulo": "A Night at the Opera", "anio_publicacion": "1975", "tipo": "estudio", "duracion": "00:43:00"},
-  {"codigo": "4", "autor": "Musico", "codigo_banda": "null", "codigo_musico": "3", "titulo": "Ahí Vamos", "anio_publicacion": "2006", "tipo": "estudio", "duracion": "00:51:30"},
-  {"codigo": "2", "autor": "Banda", "codigo_banda": "2", "codigo_musico": "null", "titulo": "Canción Animal", "anio_publicacion": "1990", "tipo": "estudio", "duracion": "00:44:12"},
-  {"codigo": "3", "autor": "Banda", "codigo_banda": "3", "codigo_musico": "null", "titulo": "Master of Puppets", "anio_publicacion": "1986", "tipo": "estudio", "duracion": "00:54:47"}
-]
