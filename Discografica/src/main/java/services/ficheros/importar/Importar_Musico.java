@@ -16,10 +16,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-
 public class Importar_Musico {
 
-     /*
+    /*
      * Importa los datos del musico a MySQL
      * Inserta registros en la tabla Musico
      */
@@ -45,7 +44,9 @@ public class Importar_Musico {
         importarMusico_MySQL(datos);
     }
 
-    // Inserta los músicos en la base de datos MySQL
+    /*
+     * Inserta los músicos en la base de datos MySQL
+     */
     public static void importarMusico_MySQL(String[][] datos) throws Excepciones {
 
         if (datos == null || datos.length == 0) {
@@ -94,7 +95,9 @@ public class Importar_Musico {
         }
     }
 
-    // Importa datos desde TXT o CSV
+    /*
+     * Importa datos desde TXT o CSV
+     */
     public static String[][] importarTexto(File archivo) throws Excepciones {
 
         String[][] datos = new String[100][20];
@@ -115,7 +118,9 @@ public class Importar_Musico {
         }
     }
 
-    // Importa datos desde JSON
+    /*
+     * Importa datos desde JSON
+     */
     public static String[][] importarJSON(File archivo) throws Excepciones {
 
         try (FileReader reader = new FileReader(archivo)) {
@@ -159,20 +164,38 @@ public class Importar_Musico {
         }
     }
 
-    // Importa datos desde BINARIO
+    /*
+     * Importa datos desde BINARIO
+     */
     public static String[][] importarBinario(File archivo) throws Excepciones {
+
+        if (archivo.length() == 0) {
+            throw new Excepciones("Archivo BINARIO vacío");
+        }
 
         try (ObjectInputStream ois
                 = new ObjectInputStream(new FileInputStream(archivo))) {
 
-            return (String[][]) ois.readObject();
+            Object obj = ois.readObject();
+
+            if (obj == null) {
+                throw new Excepciones("Archivo binario vacío");
+            }
+
+            if (!(obj instanceof String[][])) {
+                throw new Excepciones("Formato binario incorrecto");
+            }
+
+            return (String[][]) obj;
 
         } catch (Exception e) {
             throw new Excepciones("Error BINARIO: " + e.getMessage());
         }
     }
 
-    // Convierte String a int seguro
+    /*
+     * Convierte String a int seguro
+     */
     private static int parseIntSafe(String value) {
         if (value == null || value.equals("null") || value.isEmpty()) {
             return 0;

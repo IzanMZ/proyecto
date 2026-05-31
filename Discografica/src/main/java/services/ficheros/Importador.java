@@ -37,140 +37,112 @@ public class Importador {
     public static void importar_MySQL(String tabla, String[][] datos)
             throws Excepciones {
 
-        // Verifica que la tabla esté definida en el mapa COLUMNAS
         if (!COLUMNAS.containsKey(tabla)) {
             throw new Excepciones("Tabla no soportada: " + tabla);
         }
 
-        // Verifica que existan datos para importar
+        // 1. VALIDACIÓN BÁSICA
         if (datos == null || datos.length == 0) {
             throw new Excepciones("No hay datos para importar");
         }
 
-        // Obtiene las columnas asociadas a la tabla
+        //  2. VALIDACIÓN REAL (ESTO ES LO QUE TE FALTABA)
+        boolean hayDatosReales = false;
+
+        for (String[] fila : datos) {
+            if (fila != null
+                    && fila.length > 0
+                    && fila[0] != null
+                    && !fila[0].trim().isEmpty()) {
+                hayDatosReales = true;
+                break;
+            }
+        }
+
+        if (!hayDatosReales) {
+            throw new Excepciones("El archivo no contiene datos válidos");
+        }
+
         String[] cols = COLUMNAS.get(tabla);
 
-        // Construye la parte SQL de columnas: "col1,col2,col3..."
         String columnasSQL = String.join(",", cols);
 
-        // Genera placeholders "?,?,?,?" según número de columnas
         String placeholders = String.join(",",
                 java.util.Collections.nCopies(cols.length, "?"));
 
-        // Construye el SQL final de inserción
         String sql = "INSERT INTO " + tabla
                 + " (" + columnasSQL + ") VALUES (" + placeholders + ")";
 
-        try (
-                // Conexión a la base de datos
-                Connection con = configuracion.constant.conectar(); // PreparedStatement para batch insert
-                 PreparedStatement ps = con.prepareStatement(sql)) {
+        try (Connection con = configuracion.constant.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
 
-            // Se gestiona la transacción manualmente para mejorar rendimiento
             con.setAutoCommit(false);
 
-            // Lista para almacenar registros duplicados detectados
             List<String> duplicados = new java.util.ArrayList<>();
 
             int filaNum = 0;
 
-            // Recorre cada fila de datos a importar
             for (String[] fila : datos) {
 
                 filaNum++;
 
-                // Ignora filas nulas o vacías
-                if (fila == null || fila.length == 0 || fila[0] == null) {
-                    continue;
-                }
-
-                // Limpia el código principal (PK)
-                String codigoStr = fila[0].trim();
-
-                if (codigoStr.isEmpty()) {
+                //  MEJORADO
+                if (fila == null
+                        || fila.length == 0
+                        || fila[0] == null
+                        || fila[0].trim().isEmpty()) {
                     continue;
                 }
 
                 int codigo;
 
-                // Convierte el código a entero
                 try {
-                    codigo = Integer.parseInt(codigoStr);
+                    codigo = Integer.parseInt(fila[0].trim());
                 } catch (NumberFormatException e) {
                     System.out.println("Código inválido en fila " + filaNum);
                     continue;
                 }
 
-               
-                // VERIFICACIÓN DE DUPLICADOS
-               
+                //  DUPLICADOS
                 try (PreparedStatement psCheck = con.prepareStatement(
                         "SELECT 1 FROM " + tabla + " WHERE codigo = ?")) {
 
                     psCheck.setInt(1, codigo);
 
                     try (ResultSet rs = psCheck.executeQuery()) {
-
-                        // Si existe el registro, se marca como duplicado
                         if (rs.next()) {
-                            duplicados.add(
-                                    "Fila " + filaNum
-                                    + " | código " + codigo
-                                    + " | tabla " + tabla
-                            );
+                            duplicados.add("Fila " + filaNum + " código " + codigo);
                             continue;
                         }
                     }
                 }
 
-      
-                //  INSERT
-           
+                // INSERT
                 for (int i = 0; i < cols.length; i++) {
 
-                    if (i < fila.length) {
+                    if (i < fila.length && fila[i] != null
+                            && !fila[i].equalsIgnoreCase("null")
+                            && !fila[i].trim().isEmpty()) {
 
-                        // Si el valor es null  se inserta NULL en BD
-                        if (fila[i] == null || "null".equalsIgnoreCase(fila[i])) {
-                            ps.setNull(i + 1, Types.VARCHAR);
-                        } else {
-                            // Limpieza de espacios
-                            ps.setObject(i + 1, fila[i].trim());
-                        }
+                        ps.setObject(i + 1, fila[i].trim());
 
                     } else {
-                        // Si faltan columnas en la fila, se completa con NULL
                         ps.setNull(i + 1, Types.VARCHAR);
                     }
                 }
 
-                // Añade la fila al batch
                 ps.addBatch();
             }
 
-            // Ejecuta todas las inserciones en lote
             ps.executeBatch();
-
-            // Confirma la transacción
             con.commit();
 
             System.out.println("Importado a MySQL: " + tabla);
 
-            // INFORME DE DUPLICADOS
             if (!duplicados.isEmpty()) {
-
-                StringBuilder msg = new StringBuilder("YaImportado:\n\n");
-
-                for (String d : duplicados) {
-                    msg.append(d).append("\n");
-                }
-
-                // Lanza excepción con el detalle de duplicados
-                throw new YaImportado(msg.toString());
+                throw new YaImportado("Duplicados:\n" + String.join("\n", duplicados));
             }
 
         } catch (Exception e) {
-           
             throw new Excepciones("Error MySQL: " + e.getMessage());
         }
     }

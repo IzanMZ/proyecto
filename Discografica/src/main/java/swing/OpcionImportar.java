@@ -109,260 +109,226 @@ public class OpcionImportar extends javax.swing.JFrame {
 
     private void importarBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_importarBTNActionPerformed
 
-        // Se obtiene la tabla seleccionada del JComboBox.
+   
+
+        // Tabla seleccionada
         String tabla = tablaCMB.getSelectedItem().toString().trim();
 
-// Se obtiene el formato seleccionado del JComboBox.
+        // Formato seleccionado
         String formato = formatoCMB.getSelectedItem().toString().trim();
 
-// Se formatea el nombre de la tabla:
-// Primera letra en mayúscula y el resto en minúscula.
+        // Normalización de nombres
         tabla = Character.toUpperCase(tabla.charAt(0))
                 + tabla.substring(1).toLowerCase();
 
-// Se convierte el formato a mayúsculas.
         formato = formato.toUpperCase();
 
-// Se crea la opción combinando tabla y formato.
         String opcion = tabla + "_" + formato;
 
-// Variables para almacenar la ruta y el archivo.
-        String ruta;
         File archivo;
+        String[][] datos;
 
         try {
 
-            // Matriz donde se almacenarán los datos importados.
-            String[][] datos = null;
-
-            // Estructura switch para determinar qué archivo importar.
             switch (opcion) {
 
                 // =========================
-                // BANDA → MYSQL
+                // BANDA
                 // =========================
                 case "Banda_TXT" -> {
-
-                    // Ruta del archivo TXT.
-                    ruta = "TXT\\banda.txt";
-
-                    // Creación del objeto File.
-                    archivo = new File(ruta);
-
-                    // Importación de datos desde TXT.
+                    archivo = new File("Ficheros\\TXT\\banda.txt");
                     datos = Importar_banda.importarTexto(archivo);
 
-                    // Inserción de datos en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Banda TXT)");
+                    }
+
                     Importador.importar_MySQL("Banda", datos);
                 }
 
                 case "Banda_CSV" -> {
-
-                    ruta = "CSV\\banda.csv";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo CSV.
+                    archivo = new File("Ficheros\\CSV\\banda.csv");
                     datos = Importar_banda.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Banda CSV)");
+                    }
+
                     Importador.importar_MySQL("Banda", datos);
                 }
 
                 case "Banda_JSON" -> {
-
-                    ruta = "JSON\\banda.json";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo JSON.
+                    archivo = new File("Ficheros\\JSON\\banda.json");
                     datos = Importar_banda.importarJSON(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Banda JSON)");
+                    }
+
                     Importador.importar_MySQL("Banda", datos);
                 }
 
                 case "Banda_BINARIO" -> {
-
-                    ruta = "Binario\\banda.bin";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo binario.
+                    archivo = new File("Ficheros\\Binario\\banda.bin");
                     datos = Importar_banda.importarBinario(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Banda BINARIO)");
+                    }
+
                     Importador.importar_MySQL("Banda", datos);
                 }
 
                 // =========================
-                // MUSICO → MYSQL
+                // MUSICO
                 // =========================
                 case "Musico_TXT" -> {
-
-                    ruta = "TXT\\Musico.txt";
-                    archivo = new File(ruta);
-
-                    // Importación desde TXT.
+                    archivo = new File("Ficheros\\TXT\\Musico.txt");
                     datos = Importar_Musico.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Musico TXT)");
+                    }
+
                     Importador.importar_MySQL("Musico", datos);
                 }
 
                 case "Musico_CSV" -> {
-
-                    ruta = "CSV\\Musico.csv";
-                    archivo = new File(ruta);
-
-                    // Importación desde CSV.
+                    archivo = new File("Ficheros\\CSV\\Musico.csv");
                     datos = Importar_Musico.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Musico CSV)");
+                    }
+
                     Importador.importar_MySQL("Musico", datos);
                 }
 
                 case "Musico_JSON" -> {
-
-                    ruta = "JSON\\Musico.json";
-                    archivo = new File(ruta);
-
-                    // Importación desde JSON.
+                    archivo = new File("Ficheros\\JSON\\Musico.json");
                     datos = Importar_Musico.importarJSON(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Musico JSON)");
+                    }
+
                     Importador.importar_MySQL("Musico", datos);
                 }
 
                 case "Musico_BINARIO" -> {
-
-                    ruta = "Binario\\Musico.bin";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo binario.
+                    archivo = new File("Ficheros\\Binario\\Musico.bin");
                     datos = Importar_Musico.importarBinario(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Musico BINARIO)");
+                    }
+
                     Importador.importar_MySQL("Musico", datos);
                 }
 
                 // =========================
-                // ALBUM → MYSQL
+                // ALBUM
                 // =========================
                 case "Album_TXT" -> {
-
-                    ruta = "TXT\\Album.txt";
-                    archivo = new File(ruta);
-
-                    // Importación desde TXT.
+                    archivo = new File("Ficheros\\TXT\\Album.txt");
                     datos = Importar_Album.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Album TXT)");
+                    }
+
                     Importador.importar_MySQL("Album", datos);
                 }
 
                 case "Album_CSV" -> {
-
-                    ruta = "CSV\\Album.csv";
-                    archivo = new File(ruta);
-
-                    // Importación desde CSV.
+                    archivo = new File("Ficheros\\CSV\\Album.csv");
                     datos = Importar_Album.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Album CSV)");
+                    }
+
                     Importador.importar_MySQL("Album", datos);
                 }
 
                 case "Album_JSON" -> {
-
-                    ruta = "JSON\\Album.json";
-                    archivo = new File(ruta);
-
-                    // Importación desde JSON.
+                    archivo = new File("JSON\\Album.json");
                     datos = Importar_Album.importarJSON(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Album JSON)");
+                    }
+
                     Importador.importar_MySQL("Album", datos);
                 }
 
                 case "Album_BINARIO" -> {
-
-                    ruta = "Binario\\Album.bin";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo binario.
+                    archivo = new File("Ficheros\\Binario\\Album.bin");
                     datos = Importar_Album.importarBinario(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Album BINARIO)");
+                    }
+
                     Importador.importar_MySQL("Album", datos);
                 }
 
                 // =========================
-                // CANCION → MYSQL
+                // CANCION
                 // =========================
                 case "Cancion_TXT" -> {
-
-                    ruta = "TXT\\Cancion.txt";
-                    archivo = new File(ruta);
-
-                    // Importación desde TXT.
+                    archivo = new File("Ficheros\\TXT\\Cancion.txt");
                     datos = Importar_Cancion.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Cancion TXT)");
+                    }
+
                     Importador.importar_MySQL("Cancion", datos);
                 }
 
                 case "Cancion_CSV" -> {
-
-                    ruta = "CSV\\Cancion.csv";
-                    archivo = new File(ruta);
-
-                    // Importación desde CSV.
+                    archivo = new File("Ficheros\\CSV\\Cancion.csv");
                     datos = Importar_Cancion.importarTexto(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Cancion CSV)");
+                    }
+
                     Importador.importar_MySQL("Cancion", datos);
                 }
 
                 case "Cancion_JSON" -> {
-
-                    ruta = "JSON\\Cancion.json";
-                    archivo = new File(ruta);
-
-                    // Importación desde JSON.
+                    archivo = new File("Ficheros\\JSON\\Cancion.json");
                     datos = Importar_Cancion.importarJSON(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Cancion JSON)");
+                    }
+
                     Importador.importar_MySQL("Cancion", datos);
                 }
 
                 case "Cancion_BINARIO" -> {
-
-                    ruta = "Binario\\Cancion.bin";
-                    archivo = new File(ruta);
-
-                    // Importación desde archivo binario.
+                    archivo = new File("Ficheros\\Binario\\Cancion.bin");
                     datos = Importar_Cancion.importarBinario(archivo);
 
-                    // Inserción en MySQL.
+                    if (!utils.Util_Clases.datosValidos(datos)) {
+                        throw new Excepciones("Archivo vacío (Cancion BINARIO)");
+                    }
+
                     Importador.importar_MySQL("Cancion", datos);
                 }
 
-                // Opción inválida.
-                default -> {
-
-                    throw new Excepciones("Opcion no valida.");
-                }
+                default ->
+                    throw new Excepciones("Opcion no valida");
             }
 
         } catch (Excepciones e) {
-
-            // Mostrar errores personalizados.
             System.out.println(e.getMessage());
 
         } catch (Exception e) {
-
-            // Captura de errores inesperados.
-            System.out.println("Error : " + e.getMessage());
-
-            // Mostrar trazado del error.
+            System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
         }
 

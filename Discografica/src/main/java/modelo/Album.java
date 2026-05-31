@@ -75,7 +75,7 @@ public class Album {
         return anio_publicacion;
     }
 
-    public void setAño_publicacion(int anio_publicacion) {
+    public void setAnio_publicacion(int anio_publicacion) {
         this.anio_publicacion = anio_publicacion;
     }
 

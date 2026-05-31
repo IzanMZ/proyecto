@@ -1,0 +1,5 @@
+[
+  {"codigo":"3","nombre":"Metallica","anios_actuacion":"1981-Actualidad","lugar_origen":"Los Angeles, Estados Unidos","genero":"Metal"},
+  {"codigo":"1","nombre":"Queen","anios_actuacion":"1970-1991","lugar_origen":"Londres, Reino Unido","genero":"Rock"},
+  {"codigo":"2","nombre":"Soda Stereo","anios_actuacion":"1982-1997","lugar_origen":"Buenos Aires, Argentina","genero":"Rock"}
+]

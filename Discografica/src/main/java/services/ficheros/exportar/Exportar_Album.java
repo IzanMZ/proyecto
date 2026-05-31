@@ -16,17 +16,17 @@ import java.io.ObjectOutputStream;
 public class Exportar_Album {
 
     // EXPORTAR A TXT guarda los datos separados por ";" en el archivo album.txt
-    
     public static void exportarTXT(String[][] datos) {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en TXT.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar txt.");
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("TXT\\album.txt"));
+                    new FileWriter("Ficheros\\TXT\\album.txt"));
 
             for (int i = 0; i < datos.length; i++) {
 
@@ -63,17 +63,17 @@ public class Exportar_Album {
     }
 
     // EXPORTAR A CSV misma estructura que TXT pero con extensión .csv
-   
     public static void exportarCSV(String[][] datos) {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en CSV.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar csv.");
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("CSV\\album.csv"));
+                    new FileWriter("Ficheros\\CSV\\album.csv"));
 
             for (int i = 0; i < datos.length; i++) {
 
@@ -110,17 +110,17 @@ public class Exportar_Album {
     }
 
     // EXPORTAR A BINARIO serializa la matriz completa de datos y la guarda en archivo .bin
-     
     public static void exportarBinario(String[][] datos) {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en BINARIO.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar binario.");
             }
 
             ObjectOutputStream os = new ObjectOutputStream(
-                    new FileOutputStream("Binario\\album.bin")
+                    new FileOutputStream("Ficheros\\Binario\\album.bin")
             );
 
             os.writeObject(datos);
@@ -137,17 +137,17 @@ public class Exportar_Album {
     }
 
     // EXPORTAR A JSON convierte manualmente la matriz a formato JSON y la guarda en album.json
-     
     public static void exportarJSON(String[][] datos) {
 
         try {
 
-            if (datos == null || datos.length == 0) {
-                throw new Excepciones("No hay datos para exportar en JSON.");
+            //valida si hay datos en la base de datos
+            if (datos == null || datos.length == 0 || datos[0] == null || datos[0][0] == null) {
+                throw new Excepciones("No hay datos en la base de datos para exportar json.");
             }
 
             BufferedWriter bw = new BufferedWriter(
-                    new FileWriter("JSON\\album.json"));
+                    new FileWriter("Ficheros\\JSON\\album.json"));
 
             bw.write("[");
             bw.newLine();

@@ -91,7 +91,6 @@ public class Importar_Album {
     }
 
     // Obtener nombre de Banda por código
-     
     public static String getNombreBanda(int codigo) {
         return consultarNombre("SELECT nombre FROM Banda WHERE codigo = ?", codigo);
     }
@@ -104,7 +103,6 @@ public class Importar_Album {
     }
 
     // Consulta genérica para obtener nombre
-     
     public static String consultarNombre(String sql, int codigo) {
 
         try (Connection con = configuracion.constant.conectar(); PreparedStatement ps = con.prepareStatement(sql)) {
@@ -126,7 +124,6 @@ public class Importar_Album {
     }
 
     // Importar datos desde TXT o CSV
-     
     public static String[][] importarTexto(File archivo) throws Excepciones {
 
         String[][] datos = new String[100][20];
@@ -148,7 +145,6 @@ public class Importar_Album {
     }
 
     // Importar datos desde JSON
-     
     public static String[][] importarJSON(File archivo) throws Excepciones {
 
         try (FileReader reader = new FileReader(archivo)) {
@@ -194,21 +190,33 @@ public class Importar_Album {
     }
 
     // Importar datos desde BINARIO
-    
     public static String[][] importarBinario(File archivo) throws Excepciones {
+
+        if (archivo.length() == 0) {
+            throw new Excepciones("Archivo BINARIO vacío");
+        }
 
         try (ObjectInputStream ois
                 = new ObjectInputStream(new FileInputStream(archivo))) {
 
-            return (String[][]) ois.readObject();
+            Object obj = ois.readObject();
+
+            if (obj == null) {
+                throw new Excepciones("Archivo binario vacío");
+            }
+
+            if (!(obj instanceof String[][])) {
+                throw new Excepciones("Formato binario incorrecto");
+            }
+
+            return (String[][]) obj;
 
         } catch (Exception e) {
-            throw new Excepciones("Error BINARIO: " + e.getMessage());
+            throw new Excepciones("Error BINARIO: " + e.toString());
         }
     }
 
     // Convertir String a Integer (permitiendo null)
-     
     private static Integer parseNullableInt(String v) {
         if (v == null || v.equals("null") || v.isEmpty()) {
             return null;
@@ -217,7 +225,6 @@ public class Importar_Album {
     }
 
     // Limpiar valores null en String
-     
     private static String clean(String v) {
         if (v == null || v.equals("null")) {
             return null;

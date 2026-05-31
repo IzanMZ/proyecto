@@ -127,4 +127,21 @@ public class Util_Clases {
         // Retorna false si no existe o hubo error.
         return false;
     }
+
+    //  VALIDACIÓN en opcionImportar
+    public static boolean datosValidos(String[][] datos) {
+
+        if (datos == null || datos.length == 0) {
+            return false;
+        }
+
+        for (String[] fila : datos) {
+            if (fila != null && fila.length > 0 && fila[0] != null) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+   
 }
